@@ -32,63 +32,54 @@ And publish the package config files to configure the location of your Wordpress
 
 The package provides a simplified interface to some of the existing api methods documented [here](http://wp-api.org/).
 You can either use the Facade provided or inject the `Threesquared\LaravelWpApi\WpApi` class.
+The amount of items per page can be set as a forth parameter of class constructor or as a parameter of class methods.
 
 #### Posts
 ```php
-WpApi::posts($page);
-
+WpApi::posts($page, $per_page);
 ```
 
 #### Pages
 ```php
-WpApi::pages($page);
-
+WpApi::pages($page, $per_page);
 ```
 
 #### Post
 ```php
 WpApi::post($slug);
-
 ```
 
 #### Categories
 ```php
 WpApi::categories();
-
 ```
 
 #### Tags
 ```php
 WpApi::tags();
-
 ```
 
 #### Category posts
 ```php
-WpApi::categoryPosts($slug, $page);
-
+WpApi::categoryPosts($slug, $page, $per_page);
 ```
 
 #### Author posts
 ```php
-WpApi::authorPosts($slug, $page);
-
+WpApi::authorPosts($slug, $page, $per_page);
 ```
 
 #### Tag posts
 ```php
-WpApi::tagPosts($slug, $page);
-
+WpApi::tagPosts($slug, $page, $per_page);
 ```
 
 #### Search
 ```php
-WpApi::search($query, $page);
-
+WpApi::search($query, $page, $per_page);
 ```
 
 #### Archive
 ```php
-WpApi::archive($year, $month, $page);
-
+WpApi::archive($year, $month, $page, $per_page);
 ```

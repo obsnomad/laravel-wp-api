@@ -25,39 +25,48 @@ class WpApi
     protected $auth;
 
     /**
+     * Amount of items per page
+     * @var string
+     */
+    protected $per_page;
+
+    /**
      * Constructor
      *
      * @param string $endpoint
      * @param Client $client
      * @param string $auth
      */
-    public function __construct($endpoint, Client $client, $auth = null)
+    public function __construct($endpoint, Client $client, $auth = null, $per_page = 10)
     {
         $this->endpoint = $endpoint;
         $this->client   = $client;
         $this->auth     = $auth;
+        $this->per_page = $per_page;
     }
 
     /**
      * Get all posts
      *
      * @param  int $page
+     * @param  int $per_page
      * @return array
      */
-    public function posts($page = null)
+    public function posts($page = null, $per_page = null)
     {
-        return $this->get('posts', ['page' => $page]);
+        return $this->get('posts', ['page' => $page, 'per_page' => $per_page ?: $this->per_page]);
     }
 
     /**
      * Get all pages
      *
      * @param  int $page
+     * @param  int $per_page
      * @return array
      */
-    public function pages($page = null)
+    public function pages($page = null, $per_page = null)
     {
-        return $this->get('posts', ['type' => 'page', 'page' => $page]);
+        return $this->get('posts', ['type' => 'page', 'page' => $page, 'per_page' => $per_page ?: $this->per_page]);
     }
 
     /**
@@ -107,11 +116,12 @@ class WpApi
      *
      * @param  string $slug
      * @param  int $page
+     * @param  int $per_page
      * @return array
      */
-    public function categoryPosts($slug, $page = null)
+    public function categoryPosts($slug, $page = null, $per_page = null)
     {
-        return $this->get('posts', ['page' => $page, 'filter' => ['category_name' => $slug]]);
+        return $this->get('posts', ['page' => $page, 'filter' => ['category_name' => $slug], 'per_page' => $per_page ?: $this->per_page]);
     }
 
     /**
@@ -119,11 +129,12 @@ class WpApi
      *
      * @param  string $name
      * @param  int $page
+     * @param  int $per_page
      * @return array
      */
-    public function authorPosts($name, $page = null)
+    public function authorPosts($name, $page = null, $per_page = null)
     {
-        return $this->get('posts', ['page' => $page, 'filter' => ['author_name' => $name]]);
+        return $this->get('posts', ['page' => $page, 'filter' => ['author_name' => $name], 'per_page' => $per_page ?: $this->per_page]);
     }
 
     /**
@@ -131,11 +142,12 @@ class WpApi
      *
      * @param  string $tags
      * @param  int $page
+     * @param  int $per_page
      * @return array
      */
-    public function tagPosts($tags, $page = null)
+    public function tagPosts($tags, $page = null, $per_page = null)
     {
-        return $this->get('posts', ['page' => $page, 'filter' => ['tag' => $tags]]);
+        return $this->get('posts', ['page' => $page, 'filter' => ['tag' => $tags], 'per_page' => $per_page ?: $this->per_page]);
     }
 
     /**
@@ -143,11 +155,12 @@ class WpApi
      *
      * @param  string $query
      * @param  int $page
+     * @param  int $per_page
      * @return array
      */
-    public function search($query, $page = null)
+    public function search($query, $page = null, $per_page = null)
     {
-        return $this->get('posts', ['page' => $page, 'filter' => ['s' => $query]]);
+        return $this->get('posts', ['page' => $page, 'filter' => ['s' => $query], 'per_page' => $per_page ?: $this->per_page]);
     }
 
     /**
@@ -156,11 +169,12 @@ class WpApi
      * @param  int $year
      * @param  int $month
      * @param  int $page
+     * @param  int $per_page
      * @return array
      */
-    public function archive($year, $month, $page = null)
+    public function archive($year, $month, $page = null, $per_page = null)
     {
-        return $this->get('posts', ['page' => $page, 'filter' => ['year' => $year, 'monthnum' => $month]]);
+        return $this->get('posts', ['page' => $page, 'filter' => ['year' => $year, 'monthnum' => $month], 'per_page' => $per_page ?: $this->per_page]);
     }
 
     /**
