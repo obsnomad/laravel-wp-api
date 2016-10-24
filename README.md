@@ -32,7 +32,7 @@ And publish the package config files to configure the location of your Wordpress
 
 The package provides a simplified interface to some of the existing api methods documented [here](http://wp-api.org/).
 You can either use the Facade provided or inject the `Threesquared\LaravelWpApi\WpApi` class.
-The amount of items per page can be set as a forth parameter of class constructor or as a parameter of class methods.
+The amount of items per page can be set as 'per_page' config parameter, a forth parameter of class constructor or as a parameter of class methods.
 
 #### Posts
 ```php
